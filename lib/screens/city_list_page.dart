@@ -24,8 +24,8 @@ class _CitiesListPageState extends State<CitiesListPage> {
 
   List<CityModel> get filterCities {
     if (searchQuery.isEmpty) return widget.cities;
-    return widget.cities.where((movie) {
-      final title = movie.title.toLowerCase();
+    return widget.cities.where((city) {
+      final title = city.title.toLowerCase();
       final query = searchQuery.toLowerCase();
       return title.contains(query);
     }).toList();
@@ -42,7 +42,7 @@ class _CitiesListPageState extends State<CitiesListPage> {
             TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Search movies...',
+                hintText: 'Search cities...',
                 prefixIcon: const Icon(Icons.search),
                 suffixIcon: searchQuery.isNotEmpty
                     ? IconButton(
@@ -67,7 +67,7 @@ class _CitiesListPageState extends State<CitiesListPage> {
               child: filterCities.isEmpty
                   ? const Center(
                       child: Text(
-                        'No movies found.',
+                        'No cities found.',
                         style: TextStyle(color: Colors.white70),
                       ),
                     )
@@ -81,8 +81,8 @@ class _CitiesListPageState extends State<CitiesListPage> {
                             childAspectRatio: 0.75,
                           ),
                       itemBuilder: (context, index) {
-                        final movie = filterCities[index];
-                        return _CityCard(city: movie);
+                        final city = filterCities[index];
+                        return _CityCard(city: city);
                       },
                     ),
             ),
